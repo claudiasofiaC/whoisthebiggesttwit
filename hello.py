@@ -1,20 +1,20 @@
-""" Minimal flask app"""
+"""Minimal flask app"""
 
-from flask import Flask
+from flask import Flask, render_template
 
-# make the application
+#Make the application
 app = Flask(__name__)
 
-# make the route
+#Make the route
 @app.route("/")
 
-# define a function
+#Now define a function
 def hello():
-    return "Hello World!"
+    return render_template('home.html')
 
-# make a second route
+#Make a second route
 @app.route("/about")
 
-# now make the function that goes with about
+#Now make the function that goes with about
 def preds():
-    return render_template('about.html')    
+    return render_template('about.html')
