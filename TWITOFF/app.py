@@ -1,8 +1,11 @@
 """code for app"""
+# alphabetical order is the norm
 
-from flask import Flask
-from .models import DB
+from decouple import config
+from flask import Flask, render_template, request
+from .models import DB, User
 # app factory
+
 
 def create_app():
     app = Flask(__name__)
@@ -15,5 +18,9 @@ def create_app():
 
     @app.route('/')
     def root():
-        return 'Welcome to Twitoff!'
+        #dont forget to import User from .models
+        users = User.query.all()
+        return render_template('base.html', title = 'Home', users=users)
     return app
+# had a bug with decouple install
+# had to pip install python_decouple
