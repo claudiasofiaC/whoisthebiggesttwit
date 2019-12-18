@@ -6,7 +6,7 @@ class User(DB.Model):
 #Twitter user we analyze
     id = DB.Column(DB.BigInteger, primary_key=True)
     name = DB.Column(DB.String(15), nullable=False)
-    newest_tweet_id = DB.Column(BigInteger)
+    newest_tweet_id = DB.Column(DB.BigInteger)
     def __repr__(self):
         return '<User> {}>'.format(self.name)
 
@@ -23,3 +23,6 @@ class Tweet(DB.Model):
 
 # what relationship do we want btwn User and Tweet?
 # one to many
+
+# tues: connected schema. users to tweets.
+# multiple tweets from a single user
