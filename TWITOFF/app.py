@@ -11,10 +11,12 @@ def create_app():
     app = Flask(__name__)
 
 # add config for db
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = config('DATABASE_URL')
 # have the db know about the app
     DB.init_app(app)
 
+# stop tracking mods on SQLAlchemy
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     @app.route('/')
     def root():
