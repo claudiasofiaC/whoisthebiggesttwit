@@ -16,13 +16,20 @@ def create_app():
     DB.init_app(app)
 
 # stop tracking mods on SQLAlchemy
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     @app.route('/')
     def root():
         #dont forget to import User from .models
         users = User.query.all()
         return render_template('base.html', title = 'Home', users=users)
+
+    @app.route('/reset')
+    def reset():
+        DB.drop_all()
+        DB.create_all()
+        return render_template('base.html', title = 'Reset', users=[])
+
     return app
 # had a bug with decouple install
 # had to pip install python_decouple
