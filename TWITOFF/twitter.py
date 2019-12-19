@@ -32,11 +32,11 @@ def add_or_update_user(username):
             embedding=embedding)
             db_user.tweets.append(db_tweet)
             DB.session.add(db_tweet)
-
     except Exception as e:
         print('Error processing {}: {}'.format(username,e))
-        raise # -*- coding: utf-8 -*-
-
+        raise e
+    else:
+        DB.session.commit()
 
 
 # had to pip install tweepy in terminal
